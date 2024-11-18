@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="داستان نویسی" class="bg-purple-600 text-white">
+        <NavigationButton visibility="collapsed" />
+        <ActionItem ios.position="right" android.position="actionBar" tap="onNewStory">
+            <Label text="+" class="text-2xl font-bold text-white p-2" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Search Bar -->
+        <SearchBar row="0" hint="جستجوی داستان..." class="m-2" />
+
+        <!-- Main Content -->
+        <TabView row="1" selectedTabTextColor="purple" androidTabsPosition="bottom">
+            <!-- Popular Stories Tab -->
+            <TabViewItem title="محبوب‌ترین">
+                <GridLayout>
+                    <ListView items="{{ popularStories }}" class="list-group">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="*, auto" class="list-group-item p-4 border-b border-gray-200">
+                                <StackLayout col="0">
+                                    <Label text="{{ title }}" class="text-lg font-bold" />
+                                    <Label text="{{ author }}" class="text-sm text-gray-600" />
+                                    <Label text="{{ description }}" textWrap="true" class="text-gray-700 mt-1" />
+                                </StackLayout>
+                                <Label col="1" text="{{ likes }}" class="text-purple-600 font-bold" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </GridLayout>
+            </TabViewItem>
+
+            <!-- Latest Stories Tab -->
+            <TabViewItem title="جدیدترین">
+                <GridLayout>
+                    <ListView items="{{ latestStories }}" class="list-group">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="*, auto" class="list-group-item p-4 border-b border-gray-200">
+                                <StackLayout col="0">
+                                    <Label text="{{ title }}" class="text-lg font-bold" />
+                                    <Label text="{{ author }}" class="text-sm text-gray-600" />
+                                    <Label text="{{ description }}" textWrap="true" class="text-gray-700 mt-1" />
+                                </StackLayout>
+                                <Label col="1" text="{{ date }}" class="text-gray-500" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </GridLayout>
+            </TabViewItem>
+
+            <!-- Challenges Tab -->
+            <TabViewItem title="چالش‌ها">
+                <GridLayout>
+                    <ListView items="{{ challenges }}" class="list-group">
+                        <ListView.itemTemplate>
+                            <StackLayout class="list-group-item p-4 border-b border-gray-200">
+                                <Label text="{{ title }}" class="text-lg font-bold text-purple-600" />
+                                <Label text="{{ description }}" textWrap="true" class="text-gray-700 mt-1" />
+                                <Label text="{{ deadline }}" class="text-sm text-red-500 mt-2" />
+                            </StackLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </GridLayout>
+            </TabViewItem>
+        </TabView>
+    </GridLayout>
+</Page>
